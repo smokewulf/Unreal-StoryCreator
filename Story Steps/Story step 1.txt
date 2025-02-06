@@ -1,0 +1,137 @@
+Step 1:
+Create a full-fledged GUI application to make animated videos in Unreal Engine using the React web framework . The main framework will store data and the stories in a vector database. Also, create a front-end interface using React for users to interact with the application. Landing page will be a 3D login screen requesting username and password. After login, user enters the personal dashboard area. The user will need to add the Unreal Engine project folder URL to save the characters and the final animations for the file they are working on.
+The application should have the functions for Create file, Load file, Upload File, Delete file, Edit file, Save file should be on the left side of the screen separate from the file being worked. User should be able to go to any section, however the main process should go step by step.  Also Title for the story should be at the top and in the center. The file being worked on should be the main section in focus.
+
+Use Unreal Engine Documentation URL as a data source and add to the vector database:
+
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-0-documentation?application_version=5.0'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-1-documentation?application_version=5.1'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-2-documentation?application_version=5.2'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-3-documentation?application_version=5.3'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-4-documentation?application_version=5.4'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-5-documentation' 
+
+Step 1: Full-Fledged GUI Application for Unreal Engine Animated Video Creation
+Objectives:
+
+Build a modular React web application that facilitates the entire pipeline of animated video production for Unreal Engine projects.
+Provide a user-friendly GUI with a 3D login screen, a personal dashboard, and intuitive navigation between different workflow stages (Story Creation, Character Creation, Screenplay, Storyboard, Text-to-Video, etc.).
+Manage data (stories, characters, screenshots, model references, etc.) in a vector database for fast retrieval, semantic search, and integration with AI models.
+Allow users to specify their local or remote Unreal Engine project folder path where generated assets (3D meshes, animations, etc.) will be stored.
+Provide common file operations (Create, Load, Upload, Delete, Edit, Save) in a clearly designated interface area.
+Key Technologies & Frameworks:
+
+Frontend Framework:
+
+React: Offers a component-based architecture, a large ecosystem of libraries, and excellent performance for building dynamic web applications.
+Babylon.js: For the 3D login screen animation and any 3D visuals in the dashboard.
+UI Libraries (optional):Tailwind CSS to speed up development and maintain a consistent design.
+Backend & Data Layer:
+
+Node.js (Express/Nest.js): A modern backend framework to handle user authentication, data retrieval, file operations, and communication with AI services.
+FAISS Vector Database : To store and retrieve semantic data from Unreal Engine documentation, stories, and other text resources.
+Relational or Document Database (e.g., PostgreSQL): For general metadata, user profiles, project references, and file tracking.
+Integration with Unreal Engine:
+
+Unreal Python API: For orchestrating project file operations, importing characters, managing content folders, and setting up required pipelines in Unreal Engine.
+REST API Layers: To pass data from the web app to Unreal Engine’s backend or middleware services.
+Detailed Step-by-Step Process for Step 1
+User Authentication & Landing Page:
+
+3D Login Screen:
+Present a 3D scene using Babylon.js that shows a stylized Unreal Engine-themed environment.
+Include a floating login panel requesting a username and password (or SSO options if desired).
+Once authenticated, transition smoothly into the user's personal dashboard.
+User Dashboard & Navigation:
+
+Dashboard Layout:
+Left Sidebar:
+File Operations: Create, Load, Upload, Delete, Edit, Save.
+Navigation to each step in the process: Story Creation, Character Creation, Screenplay, Storyboard, Text-to-Video, etc.
+Top Bar:
+Display the current Story Title at the top center. If no story is selected, show "No Story Selected."
+Provide user account details, settings, and log-out functionality on the right side.
+Main Content Area:
+The main focus area where the currently active workflow stage is displayed.
+Step-by-Step Guidance (But Non-Restrictive):
+Although the user can jump to any section, a recommended guided process is visually indicated (e.g., step indicators at the top or side).
+If the user tries to edit the Storyboard without a saved Story, provide helpful reminders but do not prevent them from proceeding if they know what they're doing.
+Project Folder Configuration:
+
+Prompt the user to provide the path or URL to their Unreal Engine project folder on first login or whenever a new project is started.
+Validate the folder (e.g., check if it’s accessible and matches expected directory structures).
+Store this reference in the database so that character meshes, final animations, and other generated files can be automatically exported to the correct location later in the pipeline.
+Data Storage & Retrieval:
+
+Vector Database Integration:
+Ingest Unreal Engine documentation from the provided URLs into the vector database.
+Enable semantic search so users (or the AI components) can quickly reference Unreal Engine best practices, technical guides, and API docs as needed.
+User Project and Story Data:
+Store metadata about user-created stories, associated files, character designs, and workflow progress in a relational or document database.
+
+Use a schema like:
+'
+{
+  "user_id": "string",
+  "projects": [
+    {
+      "project_id": "string",
+      "project_folder_path": "string",
+      "stories": [
+        {
+          "story_id": "string",
+          "title": "string",
+          "genres": [ "Adventure", "Fantasy" ],
+          "runtime": "30_min",
+          "description": "string",
+          "characters": [ ... ],
+          "files": [ ... ],
+          "last_modified": "timestamp"
+        }
+      ]
+    }
+  ]
+}
+'
+File Operations (Left Sidebar):
+Create File: Initialize a new story file with blank data.
+Load File: Present a modal to select from existing stories or projects. Once selected, load all relevant story data into the main content area.
+Upload File: Allow user to upload a script file or other data that can seed or replace the current story data.
+Delete File: Delete a currently selected story or related asset. Confirm before final deletion.
+Edit File: Open story metadata or text editor to make changes.
+Save File: Commit the current changes to the database and, if relevant, export certain data to the Unreal Engine project folder.
+Responsive and Scalable Frontend:
+
+Ensure that the React application is fully responsive and can be used on various screen sizes.
+Implement state management (e.g., Redux, Zustand, or Recoil) to handle global application state, especially for user sessions, currently loaded story, and navigation state.
+Security & Authentication:
+
+Use secure authentication (OAuth2) with HTTPS for all data transfer.
+Store access tokens in httpOnly cookies to prevent XSS attacks.
+Restrict direct access to the Unreal Engine project folder’s data and ensure that file operations are performed only through the backend with proper authorization checks.
+Testing & Deployment:
+
+Write unit tests for UI components and integration tests for backend endpoints.
+Use CI/CD pipelines to automatically deploy frontend and backend services on a production-ready environment.
+Make sure the application gracefully handles errors (e.g., failed file loads, lost connections to the vector database, or Unreal Engine project folder not accessible).
+End Result
+By following this improved process for Step 1, you establish a solid foundation for the entire pipeline. The user can log in, set up their workspace, manage their stories and files, and benefit from integrated Unreal Engine documentation resources right from the start. This preparation ensures that subsequent steps (Story Creation, Character Creation, etc.) have a robust and flexible platform to build upon.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

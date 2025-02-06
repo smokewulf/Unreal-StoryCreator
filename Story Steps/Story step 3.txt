@@ -1,0 +1,298 @@
+Step 3:
+Character Creator
+From the descriptions, the user should be able to choose the character from the generated images. Each chosen image should then be made into 4 images of the same character: Front, Back, Left side, Right side. The images should be merged into a 3D mesh with UV mapping, depth maps, texture maps, and IK/FK rigged for Unreal Engine. The image should then have the character name assigned and saved to the database in an FBX format. The output should be sent to Unreal Engine project folder. After all the characters are created and saved, the user is fowarded to Screenplay 
+
+ Character Creator
+Objectives:
+
+Start from the rich character prompts (visual, emotional, style descriptors) created in Step 2.
+Generate a set of concept images for each character to allow user selection.
+Once a design is chosen, produce a series of images from multiple viewpoints (front, back, left, right).
+Use these images and AI-driven 3D reconstruction techniques to generate a 3D model with UV maps, texture maps, and IK/FK rigging suitable for Unreal Engine.
+Export the final model in FBX format and store it in the database and the user’s Unreal Engine project folder.
+After completion, move to the Screenplay step.
+Key Tools & Technologies:
+
+Image Generation Model:
+
+'Use fal-ai/flux-realism guided by the rich prompts from Step 2.
+
+  'pip install fal-client'
+export FAL_KEY='64533612-cc56-4d86-9558-97442e2e063d:48c360e91c7633679cec90f4ad73e68b'
+
+#Uploading files
+  'url = fal_client.upload_file("path/to/file")'
+
+#Submit  request
+
+  'import fal_client
+
+# Prompt the user for text
+user_prompt = input("Enter your prompt: ")
+
+handler = fal_client.submit(
+    "fal-ai/flux-realism",
+    arguments={
+        "prompt": user_prompt
+    },
+    webhook_url="https://optional.webhook.url/for/results",
+)
+
+request_id = handler.request_id
+print("Request submitted. Request ID:", request_id)
+'
+#Fetch request status
+  'status = fal_client.status("fal-ai/flux-realism", request_id, with_logs=True)'
+
+#Get the result
+  'result = fal_client.result("fal-ai/flux-realism", request_id)''
+
+3D Reconstruction Tools:
+Use Meshy API 3D reconstruction methods from images.
+
+Meshy API key='msy_HZ8wExWzuYzuDZs5N76fx7wTT6Rvh9A5ThvS'
+
+#Create image to 3D task
+'Request
+ Post - /openapi/v1/image-to-3d
+
+  'import requests
+
+payload = {
+     # Using data URI example
+     # image_url: f'data:image/png;base64,{YOUR_BASE64_ENCODED_IMAGE_DATA}',
+    "image_url": "<your publicly accessible image url or base64-encoded data URI>",
+    "enable_pbr": True,
+    "should_remesh": True,
+    "should_texture": True
+
+}
+headers = {
+    "Authorization": f"Bearer {YOUR_API_KEY}"
+}
+
+response = requests.post(
+    "https://api.meshy.ai/openapi/v1/image-to-3d",
+    headers=headers,
+    json=payload,
+)
+response.raise_for_status()
+print(response.json())
+''
+#Retrieve image to 3D task
+'Request
+
+Get - /openapi/v1/image-to-3d/018a210d-8ba4-705c-b111-1f1776f7f578
+  'import requests
+
+task_id = "018a210d-8ba4-705c-b111-1f1776f7f578"
+headers = {
+    "Authorization": f"Bearer {YOUR_API_KEY}"
+}
+
+response = requests.get(
+    f"https://api.meshy.ai/openapi/v1/image-to-3d/{task_id}",
+    headers=headers,
+)
+response.raise_for_status()
+print(response.json())
+' 
+Response
+  '{
+  "id": "018a210d-8ba4-705c-b111-1f1776f7f578",
+  "model_urls": {
+    "glb": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/model.glb?Expires=***",
+    "fbx": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/model.fbx?Expires=***",
+    "obj": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/model.obj?Expires=***",
+    "usdz": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/model.usdz?Expires=***"
+  },
+  "thumbnail_url": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/preview.png?Expires=***",
+  "progress": 100,
+  "started_at": 1692771667037,
+  "created_at": 1692771650657,
+  "expires_at": 1692771679037,
+  "finished_at": 1692771669037,
+  "status": "SUCCEEDED",
+  "texture_urls": [
+    {
+      "base_color": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/texture_0.png?Expires=***",
+      "metallic": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/texture_0_metallic.png?Expires=XXX",
+      "normal": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/texture_0_roughness.png?Expires=XXX",
+      "roughness": "https://assets.meshy.ai/***/tasks/018a210d-8ba4-705c-b111-1f1776f7f578/output/texture_0_normal.png?Expires=XXX"
+    }
+  ],
+  "preceding_tasks": 0,
+  "task_error": {
+    "message": ""
+  }
+}
+''
+
+Rigging & Format Export:
+Auto-rigging tools or Blender plugins (e.g., Rigify) for IK/FK setup.
+FBX export from Blender or a similar tool.
+Storage & Data Handling:
+Store metadata (character name, features, generated image sets) in a database.
+Save final FBX files to the user’s specified Unreal Engine project folder.
+Detailed Steps
+Input from Previous Step (Story Creation):
+
+Retrieve character descriptions from Step 2, which include:
+Visual style: “8k”, “photo-realistic”, “ultrarealistic”, “cinematic,” “perfection”
+Detailed attributes: Facial features, clothing, accessories, mood, lighting preferences, environmental hints.
+Retrieve character roles from the story (protagonist, antagonist, supporting characters).
+Concept Image Generation:
+
+For each character, generate a set (e.g., 4-6) of concept images using the text prompts.
+Present these concept images to the user in the Character Creator UI.
+The user can:
+Zoom In/Out: Inspect details (facial structure, clothing texture, lighting).
+Compare: Side-by-side comparison of candidates.
+Refine Prompt (Optional): If none of the concept images match the vision, the user can adjust the prompt and re-generate.
+Once the user selects the final concept image, proceed.
+Generating Multiple Views:
+
+From the chosen concept image, automatically generate Front, Back, Left side, and Right side images of the same character.
+These additional views can be generated using:
+AI-based view synthesis (e.g., leveraging a model trained to generate orthographic views), or
+A manual step where the user refines and approves each generated angle.
+Present the four orthographic views to the user for final approval. If adjustments are needed (e.g., changing lighting, hair style from the side, etc.), allow minor prompt tweaks and re-generation of specific angles.
+3D Reconstruction & Mesh Generation:
+
+Once all four views (Front, Back, Left, Right) are finalized, feed them into an automated pipeline to create a 3D model. This pipeline might:
+Use a specialized AI model (like NeRF or other 3D reconstruction tools) to generate a base 3D mesh.
+Perform automatic UV mapping and texture baking, projecting image details onto the model’s surface.
+Automatically generate normal maps, depth maps, and other texture maps to achieve a detailed, high-fidelity 3D asset.
+Run retopology routines to ensure the mesh is optimal for animation (clean edge loops, manageable polygon count).
+Rigging the Character:
+
+Use an automated rigging solution that:
+Adds an IK/FK skeleton suitable for Unreal Engine’s humanoid rig standard if the character is humanoid.
+Includes facial rigging if facial animation is required (based on the emotion tags and facial movements added in Step 2).
+Validate the rig by checking basic joint movements and ensuring that the rig follows standard naming conventions recognized by Unreal Engine’s retargeting system.
+Exporting & Saving the Character:
+
+Export the fully rigged character as an FBX file.
+Store the FBX file and related textures in the user’s Unreal Engine project folder specified in Step 1.
+Update the database with:
+Character metadata (name, role, tags).
+File paths to the FBX, textures, and any associated data.
+References to the story scenes in which this character appears.
+Quality Check & User Approval:
+
+Show a 3D viewer (using a WebGL-based preview in the browser) to let the user rotate and inspect the final character model.
+If the user finds issues (e.g., texture seams, incorrect proportions), provide an option to re-run certain parts of the pipeline or tweak the model.
+Once approved, mark the character as “Ready.”
+Forwarding to the Next Step:
+
+After all main characters are created and approved, automatically forward relevant data (character references, file paths) to the Screenplay step (Step 4).
+The Screenplay step can now integrate these character assets into the narrative, ensuring consistency between the story’s description and the actual 3D models.
+Benefits of the Revised Process
+High-Fidelity Results: By starting with high-quality image prompts and multiple viewpoint synthesis, the generated 3D models will closely match the user’s vision.
+User-Centric Iteration: The user can refine, choose, and iterate on concept images before committing to a 3D model, ensuring satisfaction and creative control.
+Automated and Integrated Pipeline: Automatic UV mapping, texture creation, and rigging reduce manual labor, speeding up the workflow and leaving room for creativity and storytelling.
+Seamless Handoff: Data and assets are cleanly stored and passed forward to the Screenplay step, ensuring no disruptions in the pipeline and a consistent production flow.
+
+
+By following this improved step-by-step strategy for Step 3, the character creation process becomes more visual, interactive, and streamlined. It transforms concept art into fully rigged 3D characters ready to animate in Unreal Engine, all while giving users the power to guide the final results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

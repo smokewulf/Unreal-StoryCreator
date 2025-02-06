@@ -1,0 +1,213 @@
+Step 4:
+**Screenplay**: Create screenplay app using 'https://github.com/teriflix/scrite' as a tool.
+Create a screenplay where the user is able to should choose the length of the video. User should be able to add description of video to be created based on the genre. The video is split into acts and scenes like 'Act1, Scene 1; Act 1 Scene 2; Act 2, Scene 1; Act 2 Scene 2, etc'. Choreograph all actions in the story with time stamps so the AI NPC characters can act out the story. Split the story into seperate acts and scenes. (This will eventually be used with behavior trees and blackboard in Unreal Engine to act out the story). The file should be saved. User sends output to Storyboard 1 scene at a time.
+
+(Screenplay). The goal is to refine the user’s story into a fully developed screenplay, complete with acts, scenes, timestamps, and action choreography. This screenplay will serve as the blueprint for subsequent steps like storyboarding, 3D modeling, and ultimately the Unreal Engine animation pipeline.
+
+Step 4: Screenplay
+Objectives:
+
+Transform the finalized story from Step 2 and the approved character assets from Step 3 into a coherent screenplay structure.
+Use a dedicated screenwriting tool (Scrite) to format the screenplay properly.
+Split the narrative into acts and scenes, each labeled clearly (e.g., Act 1, Scene 1; Act 1, Scene 2; Act 2, Scene 1; etc.).
+Incorporate timestamps and choreography details so that AI-driven NPCs (in Unreal Engine) can follow timed cues.
+Export and save the screenplay in a standard screenplay format (e.g., Fountain, Final Draft, or Scrite’s native format).
+Forward scene-by-scene output to the Storyboard step (Step 5) for visual shot planning.
+Key Tools & Technologies:
+
+Scrite: An open-source screenplay writing app that can be integrated or referenced programmatically (if an API or CLI is available).
+Internal APIs & Data Integration:
+Use the story data (genre, runtime, characters, plot details) from Step 2.
+Incorporate character references and their finalized models from Step 3 to ensure the screenplay matches available resources.
+Data Flow:
+
+Input: Final story text, character details, runtime and genre from Step 2, and character assets from Step 3.
+Output: A structured screenplay document with acts, scenes, and timestamps, ready to move into storyboard creation.
+Detailed Steps
+Initialization & Importing Story Data:
+
+Pull the finalized story data from the database.
+Import genre, runtime, and main character information.
+Present the user with an interface to confirm the story elements before beginning screenplay formatting.
+Selecting Video Length & Structure:
+
+Confirm the previously chosen runtime (e.g., 30 min, 1 hr, etc.).
+Determine a structural template for acts and scenes based on runtime and genre conventions:
+Short form (30 sec–2 min): Possibly just 1 Act, a few scenes.
+Longer form (30 min–1 hr): 3 Acts, multiple scenes per act.
+Feature-length (1.5 hr–3 hr): Traditional 3-Act structure or more complex structure depending on the narrative style.
+Automated Draft Generation with Scrite Integration:
+
+Use Scrite’s capabilities to generate an initial screenplay draft from the story outline.
+The system can:
+Convert story beats into scene headings (INT./EXT., LOCATION, TIME OF DAY).
+Break the story into acts and scenes, placing scene headings and scene descriptions automatically.
+Insert character dialogues and actions at appropriate points.
+User Interaction & Manual Refinement:
+
+Present the initial screenplay draft in a Scrite-like interface.
+Let the user:
+Rename Acts & Scenes: Adjust act headings, scene labels, or add/remove scenes.
+Edit Scene Descriptions: Add more detail, clarify motivations, insert emotional cues for characters as previously defined.
+Manage Dialogue & Emotions: Ensure that dialogue lines include the SSML-style emotional tags from Step 2 where relevant.
+Incorporate Timestamps: For choreographed actions, add timestamps and duration notes. Example:
+Scene 2, Timestamp 00:01:30: Character A enters the room, looks worriedly at Character B (facial animation cues), and sits down.
+Insert Camera & Action Notes: Though more relevant to the storyboard, brief camera or action notes can guide the next step. Example:
+“(0:45) – Medium shot on Protagonist as they lean forward and speak softly.”
+Choreography & Integration with AI NPC Behavior:
+
+Assign basic instructions that will later inform AI-driven characters in Unreal Engine:
+Actions with timing:
+“At 00:02:15, Character C draws a sword and takes two steps forward.”
+These notes will help the behavior trees and blackboard in Unreal handle character actions at runtime.
+Facial expressions and body language: Reinforce the tags defined earlier.
+Iterative Feedback Loop:
+
+Allow the user to preview a simplified timeline view:
+Display acts and scenes along a timeline.
+Show where key events, dialogues, and actions occur.
+The user can shift scenes around, change pacing, or refine the timing until satisfied.
+Saving the Screenplay:
+
+Once the user approves the screenplay, save it:
+In Database: Store structured screenplay data (acts, scenes, dialogues, timestamps) for programmatic access.
+In a Standard Format: Export to a format supported by Scrite or a common screenplay format (e.g., Fountain or PDF) for reference.
+Forwarding to Storyboard:
+
+Once saved, the user can choose to move forward, “Send to Storyboard.”
+This action:
+Packages the screenplay data by scene.
+Sends the selected scene data to the Storyboard step (Step 5).
+Ensures that the storyboard tool receives clear scene references, dialogues, and timing notes to plan shots accordingly.
+Benefits of the Revised Process
+Clear Structure & Timing: By imposing an act/scene structure with timestamps, the final animated video production in Unreal Engine will follow a well-defined narrative flow.
+Integrated Tools & Data: Leveraging Scrite ensures professional screenplay formatting and easier editing, while previously generated data (story, characters) is seamlessly integrated.
+Future Compatibility: The structured screenplay (with scene-by-scene breakdowns and timestamps) sets the stage for automatic scene setup, behavior tree configuration, and blackboard logic in Unreal Engine.
+User Empowerment: Users maintain creative control, refining and adjusting the screenplay until it perfectly matches their vision before moving to the storyboard stage.
+By following this improved step-by-step strategy for Step 4, the screenplay process becomes more dynamic, data-driven, and production-focused. It ensures that the narrative is well-organized, fully detailed, and ready to support the following stages of the pipeline.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

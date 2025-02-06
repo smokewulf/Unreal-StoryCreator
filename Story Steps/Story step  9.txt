@@ -1,0 +1,80 @@
+Step 9:
+ **HDRI**: This AI will generate realistic lighting for the scenes. It's a good idea to start this after the NeRF AI, as it will need the 3D scenes to generate the lighting.
+The output should be sent to Computer Vision
+
+Step 9 (HDRI). The goal is to produce realistic lighting conditions for the reconstructed 3D scenes generated in Step 8 (NeRF). By integrating AI-driven HDRI (High Dynamic Range Imaging) generation, we can create immersive and authentic lighting environments that significantly enhance the realism of the final animations in Unreal Engine.
+
+Step 9: HDRI (High Dynamic Range Imaging)
+Objectives:
+
+Start with the 3D scenes reconstructed by NeRF (Step 8), which now contain characters, props, and environments laid out as per the storyboard.
+Generate high-quality HDRI maps that capture realistic lighting conditions (e.g., time of day, weather, indoor/outdoor ambiance).
+Apply these HDRI maps as lighting environments within the 3D scenes, ensuring that shadows, reflections, and highlights are consistent with the narrative and style.
+Provide a lighting configuration that can be easily imported into Unreal Engine for final animation and rendering.
+Key Tools & Technologies:
+
+AI-Driven HDRI Generation:
+Utilize models that can produce HDRI maps from textual prompts and 3D scene references.
+Existing tools or neural networks that infer lighting conditions from scene geometry and materials.
+Input Data:
+Completed scene geometries from Step 8 (NeRF).
+Lighting mood references and environmental cues taken from the screenplay, storyboard, and the structured plan from SORA (Step 6).
+Genre-based lighting cues (e.g., warm and golden lighting for a romantic scene, cold and harsh lighting for a horror scene).
+Output Data:
+HDRI maps (e.g., .hdr or .exr files) and associated lighting settings.
+Updated scene configuration files that include HDRI references and can be loaded into Unreal Engine.
+Detailed Steps
+Gather Lighting Requirements:
+
+Review the SORA blueprint (Step 6) and storyboard (Step 5) for any lighting notes:
+Time of day (morning, midday, dusk, night).
+Weather conditions (clear sky, overcast, rainy).
+Indoor ambient lighting (warm candlelight, neon, fluorescent) or outdoor natural lighting.
+Consider the genre and scene emotions. For instance:
+Horror scene: Dim, high-contrast lighting with sharp shadows.
+Romance scene: Soft, diffused warm tones.
+Preparing the Scene for HDRI:
+
+From the NeRF step (Step 8), extract a simplified version of the scene’s geometry and material data (if needed) for the lighting model.
+Identify reflective surfaces (water, metal props, glass) that will strongly influence the HDRI choice, as reflections must look realistic.
+AI-Based HDRI Generation:
+
+Use a specialized AI model (either a known HDRI generation tool or a custom model trained to produce panoramic environment maps) to create HDRI maps.
+Input data to the AI model can include:
+Text prompts describing desired lighting (e.g., “A warm, late-afternoon sunlight environment”).
+Scene references (images or low-res environment maps from the NeRF output) to guide the AI in producing lighting consistent with scene geometry.
+Generate multiple HDRI options for each scene if needed, allowing the user to choose the most fitting one.
+Refining & Validating the HDRI Maps:
+
+Import the generated HDRI maps into a 3D environment viewer.
+Check how the lighting interacts with characters and props:
+Are shadows cast in plausible directions and intensities?
+Are reflections and highlights on characters and objects coherent?
+If needed, adjust the prompt or parameters and regenerate HDRI maps for improved accuracy.
+Adjusting Exposure & Contrast:
+
+Fine-tune the HDRI:
+Adjust exposure levels so that scenes aren’t too dark or washed out.
+Modify gamma and contrast for the desired cinematic feel.
+Ensure that the HDRI supports a range of light intensities so Unreal Engine can dynamically adjust lighting as characters move through the environment.
+Applying HDRI to the Scene:
+
+Assign the chosen HDRI map as the environment light source in the scene configuration.
+Update a master scene file or configuration document that Unreal Engine will use:
+Include references to the HDRI file path.
+Store metadata about recommended light intensities and post-processing settings.
+User Review & Approval:
+
+Provide a preview within the web application, showcasing how the scene looks under the applied HDRI.
+Allow the user to cycle through HDRI variations if multiple were generated, choosing the best match for the narrative tone.
+Once approved, commit the HDRI and lighting configuration to the database and project folder.
+Exporting & Forwarding to Computer Vision (Step 10):
+
+With HDRI lighting set, export the updated scene configuration and HDRI map files to the user’s Unreal Engine project directory under Content/Environments/Lighting/ or a similar structure.
+Forward the resulting scene data (including HDRI references) to the Computer Vision step (Step 10) for analysis, ensuring the next AI tool can evaluate scene quality and consistency.
+Benefits of the Revised Process
+Enhanced Realism: Properly generated HDRI maps drastically improve the scene’s visual fidelity, making shadows, reflections, and highlights more natural.
+Narrative Consistency: By basing HDRI parameters on the story’s mood and time setting, the lighting becomes an integral storytelling element rather than an afterthought.
+User Control & Iteration: The user can easily compare HDRI variants and refine until the ideal lighting is achieved.
+Seamless Continuation: Clear, structured output (HDRI maps and configuration files) ensures the Computer Vision step (Step 10) has all the data needed for quality checks and improvements.
+By following this improved step-by-step strategy for Step 9, the HDRI stage integrates realistic lighting into the carefully constructed 3D scenes, setting the stage for final scene analysis, performance checks, and eventually the full animation in Unreal Engine.

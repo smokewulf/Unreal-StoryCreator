@@ -1,0 +1,133 @@
+Step 1:
+Create a full-fledged GUI application to make animated videos in Unreal Engine using the best available web framework . The main framework will store data and the stories in a vector database. Also, create a front-end interface using React for users to interact with the application. Landing page will be a 3D login screen requesting username and password. After login, user enters the personal dashboard area. The user will need to add the Unreal Engine project folder URL to save the characters and the final animations for the file they are working on.
+The application should have the functions for Create file, Load file, Upload File, Delete file, Edit file, Save file should be on the left side of the screen separate from the file being worked. User should be able to go to any section, however the main process should go step by step.  Also Title for the story should be at the top and in the center. The file being worked on should be the main section in focus.
+
+Use Unreal Engine Documentation URL as a data source and add to the vector database:
+
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-0-documentation?application_version=5.0'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-1-documentation?application_version=5.1'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-2-documentation?application_version=5.2'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-3-documentation?application_version=5.3'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-4-documentation'
+'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-5-documentation' 
+
+Step 2:
+**Story Creation**:https://github.com/dylanhogg/gptauthor
+With user input create the story with detailed descriptions to help create a screenplay.   
+Ask if the user wants to upload a file to work on: 
+	If yes, user uploads the file
+	If No, begin creating a new story
+  Choose runtime: 30 sec-2 min, 5-15 min, 15-30 min, 30 min-1 hr, 1.5 hr, 2 hr, 2.5 hr, 3 hr
+ Genres:
+  Horror, Action, Adventure, Animation, Biography, Romance, Drama, Suspense/Mystery, Comedy, Crime, Family, Historical, Martial Arts, Thriller, Science Fiction, Mythological, Fantasy, Western, TV Show series, War, Sports, Children, Technical, Documentary, Training, Sales, Advertising  (There should be a dropdown for the user to choose the genre).
+  Create detailed descriptions of the characters and locations for creation of 3D meshes. use detailed prompts with specific descriptions. It's recommended to include elements such as the subject, background, colors, lighting, and mood. Character description prompts should be "high quality", "rich detail", "8k", "photo-realistic", "ultrarealistic", "cinematic", and "perfection". 
+Example prompts: 'https://github.com/catcathh/UltraPixel/blob/main/prompt_list.txt'
+
+Also, add detailed descriptions of the emotions and facial movements of the characters in brackets next to their dialogue for use in the animation and in ElevenLabs. 
+Here is an example of adding emotion:
+
+'<speak>
+  <voice name="YourVoiceHere">
+    <!-- A happy tone with a faster pace -->
+    <prosody rate="fast" pitch="+10%"> 
+      I'm so excited to see you today!
+    </prosody>
+    
+    <!-- A sad tone with a slower pace and lower pitch -->
+    <prosody rate="slow" pitch="-10%"> 
+      I'm really sorry, I didn't mean to hurt you...
+    </prosody>
+    
+    <!-- A calm, neutral tone -->
+    <prosody rate="medium" pitch="0%"> 
+      Let's just take it one step at a time, shall we?
+    </prosody>
+    
+    <!-- Adding a pause for effect -->
+    <break time="500ms"/> 
+
+    <!-- A surprised tone with varied pitch -->
+    <prosody pitch="+20%" rate="fast">
+      Wait, what just happened?
+    </prosody>
+  </voice>
+</speak>
+' 
+(Should iterate over the story with user input until user is satisfied with the story). After story creation, the file should be saved. The character descriptions and the user should be forwarded to the character creator app. The story is forwarded to Screenplay.
+
+Step 3:
+Character Creator 
+FAL API key: '64533612-cc56-4d86-9558-97442e2e063d:48c360e91c7633679cec90f4ad73e68b'
+
+From the descriptions, the user should be able to choose the character from the generated images. Each chosen image should then be made into 4 images of the same character: Front, Back, Left side, Right side. The images should be merged into a 3D mesh with UV mapping, depth maps, texture maps, and IK/FK rigged for Unreal Engine. The image should then have the character name assigned and saved to the database in an FBX format. The output should be sent to Unreal Engine project folder. After all the characters are created and saved, the user is fowarded to Screenplay 
+
+
+Step 4:
+**Screenplay**: Create screenplay app using 'https://github.com/teriflix/scrite' as a tool.
+Create a screenplay where the user is able to should choose the length of the video. User should be able to add description of video to be created based on the genre. The video is split into acts and scenes like 'Act1, Scene 1; Act 1 Scene 2; Act 2, Scene 1; Act 2 Scene 2, etc'. Choreograph all actions in the story with time stamps so the AI NPC characters can act out the story. Split the story into seperate acts and scenes. (This will eventually be used with behavior trees and blackboard in Unreal Engine to act out the story). The file should be saved. User sends output to Storyboard 1 scene at a time.
+
+Step 5:
+**Storyboard**: Create Storyboard app using 'https://github.com/ramenhost/storyboarding?tab=readme-ov-file' as a tool
+Create a storyboard with detailed shot list for production. Seperate into acts and scenes. (Should be able to change or update the shot per user input)
+The output should saved. The user should be able to send storyboard, Screenplay, and Story  output to Text to Video one scene at a time.
+
+From this point, the rest of the process is automated.
+
+Step 6:Open-Sora
+ **Text to Video **:  This AI will take the user's text and image input and generate a high-level plan for the video. It doesn't need to generate the video itself at this stage, just understand the user's input and create a structured plan.
+The output should be sent to 3D Model
+
+Step 7:https://github.com/allenai/objaverse-xl.git
+ **3D Model **:  start creating the 3D models. This AI would take instructions from the Text to Video AI and generate 3D models as needed. For example, if the Text to Video AI determines that a scene needs a certain type of character or object
+The output should be sent to NeRF
+
+Step 8:
+ **NeRF**: This AI will create 3D scenes from 2D and 3D images. It's a good idea to start this after the 3D Model, as it will likely use similar techniques and can benefit from the experience gained in creating the 3D Model.
+The output should be sent to HDRI
+
+Step 9:
+ **HDRI**: This AI will generate realistic lighting for the scenes. It's a good idea to start this after the NeRF AI, as it will need the 3D scenes to generate the lighting.
+The output should be sent to Computer Vision
+
+Step 10:
+ **Computer Vision**: This AI will analyze the generated 3D models and scenes, and provide feedback that can be used to improve them. It's a good idea to start this after the other AIs, as it will need their output to analyze.
+The output should be sent to Unreal Engine AI
+
+Step 11:
+ **Unreal Engine **: This is the final step in the pipeline, the AI will combine all the generated elements into a final animated video in Unreal Engine by creating behavior trees, blueprints, montages, and the use of unreal engine blackboard using the Unreal Python API and the Unreal Animation Tool. The AI NPC characters will act out the story.
+The output should be sent to Unreal Engine project folder.
+
+
+
+
+
+
+~/.bashrc
+
+
+export PATH="/teamspace/studios/this_studio/.local/bin:$PATH"
+
+
+
+
+export PATH="
+
+
+
+export PATH="
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

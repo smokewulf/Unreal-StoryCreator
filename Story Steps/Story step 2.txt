@@ -1,0 +1,160 @@
+Step 2:
+**Story Creation**:https://github.com/dylanhogg/gptauthor
+With user input create the story with detailed descriptions to help create a screenplay.   
+Ask if the user wants to upload a file to work on: 
+	If yes, user uploads the file
+	If No, begin creating a new story
+  Choose runtime: 30 sec-2 min, 5-15 min, 15-30 min, 30 min-1 hr, 1.5 hr, 2 hr, 2.5 hr, 3 hr
+ Genres:
+  Horror, Action, Adventure, Animation, Biography, Romance, Drama, Suspense/Mystery, Comedy, Crime, Family, Historical, Martial Arts, Thriller, Science Fiction, Mythological, Fantasy, Western, TV Show series, War, Sports, Children, Technical, Documentary, Training, Sales, Advertising  (There should be a dropdown for the user to choose the genre).
+  Create detailed descriptions of the characters and locations for creation of 3D meshes. use detailed prompts with specific descriptions. It's recommended to include elements such as the subject, background, colors, lighting, and mood. Character description prompts should be "high quality", "rich detail", "8k", "photo-realistic", "ultrarealistic", "cinematic", and "perfection". 
+Example prompts: 'https://github.com/catcathh/UltraPixel/blob/main/prompt_list.txt'
+
+Also, add detailed descriptions of the emotions and facial movements of the characters in brackets next to their dialogue for use in the animation and in ElevenLabs. 
+Here is an example of adding emotion:
+
+'<speak>
+  <voice name="YourVoiceHere">
+    <!-- A happy tone with a faster pace -->
+    <prosody rate="fast" pitch="+10%"> 
+      I'm so excited to see you today!
+    </prosody>
+    
+    <!-- A sad tone with a slower pace and lower pitch -->
+    <prosody rate="slow" pitch="-10%"> 
+      I'm really sorry, I didn't mean to hurt you...
+    </prosody>
+    
+    <!-- A calm, neutral tone -->
+    <prosody rate="medium" pitch="0%"> 
+      Let's just take it one step at a time, shall we?
+    </prosody>
+    
+    <!-- Adding a pause for effect -->
+    <break time="500ms"/> 
+
+    <!-- A surprised tone with varied pitch -->
+    <prosody pitch="+20%" rate="fast">
+      Wait, what just happened?
+    </prosody>
+  </voice>
+</speak>
+' 
+(Should iterate over the story with user input until user is satisfied with the story). After story creation, the file should be saved. The character descriptions and the user should be forwarded to the character creator app. The story is forwarded to Screenplay.
+
+(Story Creation). The goal is to make the story creation process more user-friendly, iterative, and logically integrated with the broader pipeline. We’ll incorporate guided prompts, user-driven iteration, seamless integration with genre and runtime options, and richer data capture for character and scene descriptions.
+
+Enhanced Story Creation Process
+Objectives:
+
+ Allow the user to either upload an existing story file or create a new one from scratch.
+ Guide the user through selecting a runtime, choosing a genre, and fleshing out their narrative.
+ Iteratively refine the story with user feedback until they are satisfied.
+ Capture rich, detailed character and location descriptions to inform downstream 3D asset creation.
+ Embed emotional and vocal direction for character dialogue suitable for animation and text-to-speech tools.
+ Save the final story and forward the data to the Character Creator and Screenplay steps.
+
+Key Integrations & References:
+
+ Story Creation Tool: gptauthor for generating initial story drafts and refining them.
+ Prompt Inspiration: UltraPixel Prompt List for high-quality, detailed prompts.
+ Voice & Emotion Markup: Use SSML (Speech Synthesis Markup Language) and <prosody> tags to annotate dialogue with emotional cues.
+
+Detailed Steps
+Initial Options (Upload or Create New):
+
+ Upon entering the Story Creation panel, present two options:
+  Upload an Existing File:
+  The user can select a local script or text file.
+  The system parses the file, extracting story elements and indexing them into the vector database for quick reference.
+ Create a New Story:
+  If the user chooses to start from scratch, present a guided wizard.
+ Guided Story Wizard (If Creating New):
+
+  Runtime Selection:
+   Provide a dropdown menu with options: 30 sec-2 min, 5-15 min, 15-30 min, 30 min-1 hr, 1.5 hr, 2 hr, 2.5 hr, 3 hr.
+   The selected runtime helps constrain the story’s scope and pacing.
+ Genre Selection:
+  Show a dropdown with the provided genres (Horror, Action, Adventure, etc.).
+  Depending on the genre chosen, provide subtle prompts or hints relevant to that genre (e.g., “For Fantasy, consider magical elements, mythical creatures, etc.”).
+ Initial Story Prompt Creation:
+   Present a text area where the user can input a short premise or logline of their story idea. For example: “A young explorer ventures into an ancient forest to find a mythical creature that can save her village.”
+  The system uses gptauthor to expand the premise into a draft story outline with acts and potential scenes. 
+
+Iterative Refinement:
+
+ Draft Review and Editing:
+  Show the user the initial story draft generated by gptauthor.
+  Provide controls to:
+   Refine Story: Prompt the AI to add more detail, adjust tone, include specific elements, or alter the pacing.
+Add/Remove Scenes: Let the user request more scenes or remove unnecessary ones.
+Deepen Character Backstories: Prompt the AI to elaborate on character motivations, backgrounds, and relationships.
+Character & Location Descriptions:
+For each character introduced, show a character description panel:
+Let the user add high-quality, rich details for their appearance, attire, personality, and environment.
+Encourage using terms like “8k”, “photo-realistic”, “ultrarealistic”, “cinematic” to create prompts suitable for 3D mesh generation.
+For each character’s dialogue, allow adding SSML prosody tags to indicate emotions and speaking style. For example:
+
+'<prosody rate="fast" pitch="+10%">(CharacterName): [excitedly] I'm so happy to see you!</prosody>
+'
+
+For each location introduced, prompt the user to detail setting elements:
+ Subject matter, colors, lighting, mood, and environmental conditions.
+ These descriptions will guide the 3D Model and NeRF steps later.
+Integrating Emotional and Facial Descriptions for Animation:
+
+Add a dedicated "Dialogue Enhancement" section where the user can assign emotional states and facial expressions next to each piece of dialogue. For instance:
+[happy, smiling softly, eyes bright, slightly leaning forward]
+These annotations can be formatted to match SSML or custom markup that the Animation and Speech tools can interpret.
+Continuous Feedback Loop:
+
+The user can iterate as many times as needed:
+Requesting changes: “Make the protagonist older and more cautious,” or “Add a dramatic conflict in Act 2.”
+Tuning the emotional tone of dialogues and scenes.
+Saving intermediate drafts if desired.
+The system keeps a history of revisions so the user can revert to previous versions if needed.
+Finalizing the Story:
+
+Once the user is satisfied, they can click “Save Story.”
+The final story, character descriptions, and location details are stored:
+Vector Database: For semantic search and reference.
+Relational/Document DB: For structured data storage (characters, scene breakdowns, dialogues).
+The system automatically forwards the story’s data:
+To Character Creator App (Step 3): So that the character prompts can be turned into images and 3D meshes.
+To Screenplay (Step 4): As input for writing the final screenplay and breaking it down into acts and scenes.
+Benefits of the Revised Process
+User-Friendly & Flexible: The iterative approach allows users to experiment and refine their story until they’re fully satisfied.
+Deep Integration of Guidance: By suggesting prompts and providing genre-based hints, users can craft richer narratives more easily.
+Richer Data for Downstream Steps: Detailed character and location descriptions, emotional cues in dialogue, and a well-structured story lay a strong foundation for the subsequent 3D modeling, animation, and rendering steps.
+Seamless Workflow: Upon completion, the user’s finalized story is cleanly handed off to the Character Creation and Screenplay tools, maintaining a smooth production pipeline.
+By following this improved step-by-step strategy for Step 2, the story creation process becomes more engaging, produces richer narrative content, and ensures that all the data needed for later stages (character modeling, animation, and final video production) is captured and organized.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,218 @@
+Step 5:
+**Storyboard**: Create Storyboard app using 'https://github.com/ramenhost/storyboarding?tab=readme-ov-file' as a tool
+Create a storyboard with detailed shot list for production. Seperate into acts and scenes. (Should be able to change or update the shot per user input)
+The output should saved. The user should be able to send storyboard, Screenplay, and Story  output to Text to Video one scene at a time.
+
+
+
+Step 5 (Storyboard). The goal is to translate the screenplay (with its acts, scenes, dialogues, and timings) into a visually oriented plan—a storyboard. The storyboard will detail camera angles, shot compositions, character placements, and transitions. This allows the user to visualize the production before moving into text-to-video and subsequent automated steps.
+
+Step 5: Storyboard
+Objectives:
+
+Convert each scene from the screenplay into a series of storyboard panels.
+Represent camera angles, framing, character positions, and major actions visually.
+Allow the user to adjust and refine shots, angles, and transitions.
+Organize the storyboard by acts and scenes, and clearly associate timing notes and dialogues for reference.
+Prepare a final storyboard that can be sent scene-by-scene to the next step (Text-to-Video / SORA).
+Key Tools & Technologies:
+
+Storyboard Creation Tool:
+Utilize the tool from storyboarding repository if it provides APIs or integration methods, or use a custom React-based interface with canvas or SVG elements.
+Integration with Previous Steps:
+Import screenplay data (scenes, dialogues, timestamps) from Step 4.
+Reference character appearances and details from Steps 2 and 3 to ensure visual consistency.
+Detailed Steps
+Importing Screenplay Data:
+
+Load the structured screenplay data produced in Step 4.
+Parse each act and scene, and present them as a collapsible list or timeline on the left side of the screen.
+Show key attributes:
+Scene number (e.g., Act 1, Scene 2)
+Scene description
+Timestamp markers (e.g., Scene starts at 00:02:15)
+Dialogue lines with character emotions
+Initial Storyboard Generation:
+
+For each scene, generate an initial storyboard suggestion:
+Break the scene into key moments (beats) based on dialogues, actions, or camera moves noted in the screenplay.
+For each beat, create a placeholder panel:
+Show character placeholders (e.g., rough sketches or icons) at approximate positions.
+Suggest a camera angle (wide shot, close-up, medium shot, POV) based on screenplay action notes.
+Include basic text overlays: scene description, dialogue snippet, or action cue.
+These initial suggestions come from heuristics or simple AI logic that interprets the screenplay’s instructions (e.g., “At 00:02:15, character C draws a sword” might suggest a medium shot focusing on that action).
+User Interaction & Customization:
+
+Provide a panel-based editor:
+Panels Display: Each scene is represented by a sequence of panels (frames).
+Drag & Drop: Allow the user to rearrange panels within a scene.
+Drawing Tools (Optional): Users can add annotations, sketch character placements, or indicate camera movements directly on the panel using a simple drawing interface.
+Camera Presets: Dropdowns or icons for common camera setups (close-up, over-the-shoulder, wide shot, aerial shot).
+Character Placement & Direction: Add UI elements that let users drag character icons in a 2D layout to indicate their positions and directions.
+The user can also:
+Add or remove panels to better represent the flow of the scene.
+Change camera angles: For example, switch a wide shot to a close-up if the action or emotion warrants it.
+Insert textual notes: “Character A should move slowly from left to right in this shot” or “Increase lighting intensity here.”
+Timing & Scene Transitions:
+
+For each panel, associate a time range or a timestamp relative to the scene.
+If the screenplay includes transitions (cuts, fades, wipes), indicate them between panels:
+For example, a “CUT TO:” line in the screenplay translates to a transition between the last panel of one scene and the first panel of the next.
+Provide a timeline view at the bottom of the screen:
+Scenes and panels placed along a timeline.
+Users can adjust panel durations or reorder shots to match the timing specified in the screenplay.
+Character References & Asset Integration:
+
+For convenience, display character reference images generated in Step 3 next to the storyboard panels.
+This helps the user recall what each character looks like and ensures that the storyboard visually matches the character designs.
+Optionally, let the user attach additional reference images or color palettes to each panel.
+Iterative Feedback Loop:
+
+Users can quickly switch between scenes, refine panels, and update notes.
+If a scene feels off, the user can return to the screenplay step (Step 4) to adjust the narrative or timings, then return to the storyboard to reflect changes.
+Provide version control or a history of changes so users can revert to earlier storyboard layouts.
+Saving the Storyboard:
+
+Once satisfied with the scene’s panels, the user clicks “Save.”
+The application stores the storyboard data (panels, notes, camera angles, transitions) in the database.
+Export options:
+JSON or a similar structured format: for downstream AI tools.
+PDF or image sequence: for offline reference or collaboration with a team.
+Forwarding to the Next Step:
+
+The user can choose “Send to Text-to-Video (SORA)” for a particular scene.
+When doing so:
+The tool packages the scene’s storyboard data, along with the screenplay and story information, into a structured format.
+This data is then passed to the next stage (Step 6) where SORA will use it to guide the initial video planning.
+The user can do this scene-by-scene to maintain granular control over the workflow.
+Benefits of the Revised Process
+Visual Clarity & Pre-Visualization: The storyboard gives a clear visual plan of the final product before heavy 3D modeling and animation.
+User Control & Flexibility: Users can refine camera angles, shot compositions, and transitions until they are satisfied, ensuring the final production follows their vision.
+Consistent Workflow: The storyboard references the screenplay and character designs, maintaining a consistent narrative flow and look.
+Structured Output for Downstream Steps: By organizing the storyboard data, the next AI steps (Text-to-Video, 3D modeling, NeRF, etc.) have a clear blueprint to follow.
+By following this improved step-by-step strategy for Step 5, the storyboard creation process becomes a dynamic, iterative, and user-friendly experience. It sets the stage for a smooth transition into the automated steps of generating video plans and ultimately producing high-quality animations in Unreal Engine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
