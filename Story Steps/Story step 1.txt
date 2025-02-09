@@ -2,7 +2,7 @@ Step 1:
 Create a full-fledged GUI application to make animated videos in Unreal Engine using the React web framework . The main framework will store data and the stories in a vector database. Also, create a front-end interface using React for users to interact with the application. Landing page will be a 3D login screen requesting username and password. After login, user enters the personal dashboard area. The user will need to add the Unreal Engine project folder URL to save the characters and the final animations for the file they are working on.
 The application should have the functions for Create file, Load file, Upload File, Delete file, Edit file, Save file should be on the left side of the screen separate from the file being worked. User should be able to go to any section, however the main process should go step by step.  Also Title for the story should be at the top and in the center. The file being worked on should be the main section in focus.
 
-Use Unreal Engine Documentation URL as a data source and add to the vector database:
+Use Unreal Engine Documentation as a data source and add to the vector database:
 
 'https://github.com/smokewulf/Unreal-StoryCreator/tree/master/Unreal%20Documentation' 
 
