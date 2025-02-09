@@ -2,14 +2,9 @@ Step 1:
 Create a full-fledged GUI application to make animated videos in Unreal Engine using the React web framework . The main framework will store data and the stories in a vector database. Also, create a front-end interface using React for users to interact with the application. Landing page will be a 3D login screen requesting username and password. After login, user enters the personal dashboard area. The user will need to add the Unreal Engine project folder URL to save the characters and the final animations for the file they are working on.
 The application should have the functions for Create file, Load file, Upload File, Delete file, Edit file, Save file should be on the left side of the screen separate from the file being worked. User should be able to go to any section, however the main process should go step by step.  Also Title for the story should be at the top and in the center. The file being worked on should be the main section in focus.
 
-Use Unreal Engine Documentation URL as a data source and add to the vector database:
+Use Unreal Engine Documentation as a data source and add to the vector database:
 
-'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-0-documentation?application_version=5.0'
-'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-1-documentation?application_version=5.1'
-'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-2-documentation?application_version=5.2'
-'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-3-documentation?application_version=5.3'
-'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-4-documentation?application_version=5.4'
-'https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-5-5-documentation' 
+'https://github.com/smokewulf/Unreal-StoryCreator/tree/master/Unreal%20Documentation' 
 
 Step 1: Full-Fledged GUI Application for Unreal Engine Animated Video Creation
 Objectives:
@@ -64,7 +59,7 @@ Store this reference in the database so that character meshes, final animations,
 Data Storage & Retrieval:
 
 Vector Database Integration:
-Ingest Unreal Engine documentation from the provided URLs into the vector database.
+Ingest Unreal Engine documentation into the vector database.
 Enable semantic search so users (or the AI components) can quickly reference Unreal Engine best practices, technical guides, and API docs as needed.
 User Project and Story Data:
 Store metadata about user-created stories, associated files, character designs, and workflow progress in a relational or document database.
