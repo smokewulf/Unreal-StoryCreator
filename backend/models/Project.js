@@ -1,0 +1,1 @@
+const mongoose = require('mongoose');\n\nconst ProjectSchema = new mongoose.Schema({\n    project_id: { type: String, required: true },\n    project_folder_path: { type: String, required: true },\n    stories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Story' }]\n});\n\nmodule.exports = mongoose.model('Project', ProjectSchema);
