@@ -59,7 +59,7 @@ Store this reference in the database so that character meshes, final animations,
 Data Storage & Retrieval:
 
 Vector Database Integration:
-Ingest Unreal Engine documentation from the provided URLs into the vector database.
+Ingest Unreal Engine documentation into the vector database.
 Enable semantic search so users (or the AI components) can quickly reference Unreal Engine best practices, technical guides, and API docs as needed.
 User Project and Story Data:
 Store metadata about user-created stories, associated files, character designs, and workflow progress in a relational or document database.
