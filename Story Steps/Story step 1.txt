@@ -4,7 +4,7 @@ The application should have the functions for Create file, Load file, Upload Fil
 
 Use Unreal Engine Documentation as a data source and add to the vector database:
 
-'https://github.com/smokewulf/Unreal-StoryCreator/tree/master/Unreal%20Documentation' 
+'/home/norman/Desktop/Unreal-StoryCreator/Unreal Documentation' '/home/norman/Desktop/Unreal-StoryCreator/Training'
 
 Step 1: Full-Fledged GUI Application for Unreal Engine Animated Video Creation
 Objectives:
