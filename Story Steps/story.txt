@@ -97,19 +97,6 @@ The output should be sent to Unreal Engine project folder.
 
 
 
-~/.bashrc
-
-
-export PATH="/teamspace/studios/this_studio/.local/bin:$PATH"
-
-
-
-
-export PATH="
-
-
-
-export PATH="
 
 
 
