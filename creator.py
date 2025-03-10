@@ -11,11 +11,11 @@ class Story:
         self.timestamps.append(datetime.datetime.now())
 
     def display_story(self):   
-        print(f'Story Title: {self.title}')    
+        print(f'Story Title: {self.title}\n')    
     
         for idx, scene in enumerate(self.scenes):                                     
            print(f'Scene {idx + 1}: {scene}')                                        
-           print(f'Timestamp: {self.timestamps[idx]}') 
+           print(f'Timestamp: {self.timestamps[idx]}\n') 
 
 # Example Usage
 my_story = Story('Epic Adventure')
@@ -68,9 +68,6 @@ class VideoApplication:
     def display_story_title(self, title):                                             
        print(f'\n{title.center(50)}')  # Center title on the screen
 
-
-{title.center(50)}
-')  # Center title on the screen
 
     def focus_on_file_section(self, file_content):
         print('Main section in focus:')
