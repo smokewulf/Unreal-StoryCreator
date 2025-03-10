@@ -71,7 +71,7 @@ class VideoApplication:
 
 
     def focus_on_file_section(self, file_content):
-        print('Main section in focus:')
+        print('Main section in focus:\n')
         print(file_content)  # Display the current file being worked on
 
     # Other existing methods remain the same
@@ -80,7 +80,7 @@ class VideoApplication:
 video_app = VideoApplication()
 video_app.display_sidebar()
 video_app.display_story_title('Epic Adventure')
-video_app.focus_on_file_section('This is the main content of the file being worked on.')
+video_app.focus_on_file_section('This is the main content of the file being worked on.\n')
 import faiss
 import numpy as np
 
@@ -171,7 +171,7 @@ class UserProjectData:
 def ingest_documentation(url, vector_db):
     # Here you would implement the logic to fetch and vectorize the documentation
     # For now, we are just simulating the ingestion
-    print(f'Ingesting documentation from {url} into vector database.')
+    print(f'Ingesting documentation from {url} into vector database.\n')
     vector_repr = np.random.rand(128)  # Simulated vector representation
     vector_db.add_document(url, vector_repr)
 
