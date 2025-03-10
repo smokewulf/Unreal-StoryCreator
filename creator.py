@@ -10,9 +10,9 @@ class Story:
         self.scenes.append(scene)
         self.timestamps.append(datetime.datetime.now())
 
-    def display_story(self):
-        print(f'Story Title: {self.title}
-')
+    def display_story(self):   
+        print(f'Story Title: {self.title}')    
+    
         for idx, scene in enumerate(self.scenes):
             print(f'Scene {idx + 1}: {scene}
 Timestamp: {self.timestamps[idx]}')
@@ -202,3 +202,25 @@ def import_character(file_path):
 # Example function to manage content folders
 def manage_content_folders(folder_name):
     run_unreal_script('BackendOperations.py', 'manage_content_folders', folder_name)
+if __name__ == '__main__':
+    # Test UserProjectData functionality
+    user_data = UserProjectData(user_id="12345")
+    
+    # Adding a project
+    user_data.add_project(project_id="proj1", project_folder_path="/path/to/project1")
+    
+    # Adding a story to the created project
+    user_data.add_story(
+        project_id="proj1",
+        story_id="story1",
+        title="A New Adventure",
+        genres=["Fantasy", "Adventure"],
+        runtime="2 hours",
+        description="An epic tale of adventure.",
+        characters=["Hero", "Villain"],
+        files=["file1.txt", "file2.txt"],
+        last_modified="2023-09-01"
+    )
+
+    # Print user data for verification
+    print(user_data.projects)
