@@ -36,11 +36,11 @@ class VideoApplication:
 
     def login(self, username, password):
         # Simulated login process
-        print(f'User {username} logged in successfully.')
+        print(f'User {username} logged in successfully.\n')
         self.user_dashboard()
 
     def user_dashboard(self):
-        print('Welcome to your personal dashboard.')
+        print('Welcome to your personal dashboard.\n')
 
     def set_project_folder_url(self, url):
         self.unreal_engine_project_folder = url
@@ -61,7 +61,7 @@ class VideoApplication:
         self.sidebar_functions = ['Create File', 'Load File', 'Upload File', 'Delete File', 'Edit File', 'Save File']
 
     def display_sidebar(self):
-        print('Functions:')
+        print('Functions:\n')
         for function in self.sidebar_functions:
             print(f'- {function}')
 
