@@ -13,9 +13,9 @@ class Story:
     def display_story(self):   
         print(f'Story Title: {self.title}')    
     
-        for idx, scene in enumerate(self.scenes):
-            print(f'Scene {idx + 1}: {scene}
-Timestamp: {self.timestamps[idx]}')
+        for idx, scene in enumerate(self.scenes):                                     
+           print(f'Scene {idx + 1}: {scene}')                                        
+           print(f'Timestamp: {self.timestamps[idx]}') 
 
 # Example Usage
 my_story = Story('Epic Adventure')
@@ -65,8 +65,8 @@ class VideoApplication:
         for function in self.sidebar_functions:
             print(f'- {function}')
 
-    def display_story_title(self, title):
-        print(f'
+    def display_story_title(self, title):                                             
+       print(f'\n{title.center(50)}')  # Center title on the screen
 
 
 {title.center(50)}
