@@ -64,6 +64,7 @@ class VideoApplication:
         print('Functions:\n')
         for function in self.sidebar_functions:
             print(f'- {function}')
+        print()
 
     def display_story_title(self, title):                                             
        print(f'\n{title.center(50)}')  # Center title on the screen
